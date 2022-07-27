@@ -4,7 +4,7 @@ A faster way to calculate SDR than museval.metrics.bss_eval
 museval.metrics.bss_eval takes a very long time to compute, this is especially prominent when only going for the SDR values, without the other metrics in mind. The fastsdr function inside fastsdr.py file can find the SDR values much faster with very low error.
 
 
-###Results 
+### Results 
 SDR is the np.nanmean of the calculated SDR using bss_eval, SDRtime is the time it takes to run the bss_eval function
 fastsdr is the np.nanmean of the calculated SDR using fastsdr, fastsdr time is the tame it takes to run the fastsdr function
 
