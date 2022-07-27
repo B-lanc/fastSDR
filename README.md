@@ -6,7 +6,8 @@ museval.metrics.bss_eval takes a very long time to compute, this is especially p
 
 ### Results 
 SDR is the np.nanmean of the calculated SDR using bss_eval, SDRtime is the time it takes to run the bss_eval function
-fastsdr is the np.nanmean of the calculated SDR using fastsdr, fastsdr time is the tame it takes to run the fastsdr function
+fastsdr is the np.nanmean of the calculated SDR using fastsdr, fastsdr time is the tame it takes to run the fastsdr function.
+Calculated using the IRM (Ideal Ratio Mask)
 
 |SongName|SDR|SDRtime|fastsdr|fastsdrtime|
 |--------|---|-------|-------|-----------|

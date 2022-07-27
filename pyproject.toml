@@ -1,0 +1,14 @@
+[build-system]
+requires = ["setuptools>=61.0", "numpy"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "fastsdr"
+version = "0.0.1"
+authors = [
+    { name="Blanc", email="Jerry.Tobing@binus.ac.id" },
+]
+description = "A faster way to calculate SDR"
+
+[project.urls]
+"Homepage" = "https://github.com/b-lanc/fastsdr"
