@@ -15,6 +15,7 @@ def fastsdr(original_source, predicted_source, window=88200, hop=66150):
 
     SDR = list()
     n_win = (original_source.shape[1] - window + hop) // hop
+    nanmask = np.full((n_win,), False)
     for source_idx, _ in enumerate(original_source):
         source_sdr = np.arange(n_win, dtype="float64")
         for _i, _ in enumerate(source_sdr):
@@ -22,8 +23,10 @@ def fastsdr(original_source, predicted_source, window=88200, hop=66150):
             pred_window = predicted_source[source_idx, _i * hop : _i * hop + window, :]
 
             source_sdr[_i] = _calc_sdr(orig_window, pred_window)
+        nanmask = nanmask | np.isnan(source_sdr)
         SDR.append(source_sdr)
     SDR = np.stack(SDR, axis=0)
+    SDR[:, nanmask] = np.nan
 
     return SDR
 
