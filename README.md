@@ -9,7 +9,7 @@ SDR is the np.nanmean of the calculated SDR using bss_eval, SDRtime is the time 
 fastsdr is the np.nanmean of the calculated SDR using fastsdr, fastsdr time is the tame it takes to run the fastsdr function
 
 |SongName|SDR|SDRtime|fastsdr|fastsdrtime|
-|--------|-----------|-------|-----------|
+|--------|---|-------|-------|-----------|
 |AM Contra - Heart Peripheral|5.134488617484768|151.27157252199686|5.134488424600735|0.3724633990059374|
 |Al James - Schoolboy Facination|4.713653418273755|150.10335094299808|4.713653230096008|0.35549173499748576|
 |Angels In Amplifiers - I'm Alright|5.024461470086696|89.51552404100221|5.024461340679623|0.3173046890005935|
