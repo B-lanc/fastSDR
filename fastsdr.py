@@ -1,7 +1,8 @@
 import numpy as np
+from torch import sum as torchsum
 
 
-def fastsdr(original_source, predicted_source, window=88200, hop=66150):
+def fastsdr(original_source, predicted_source, window=88200, hop=66150, tensor=False):
     """
     Calculate the SDR values of a predicted source
     :params original_source: numpy array of the original source signal (shape = n_sources, n_samples, n_channels)
@@ -22,7 +23,7 @@ def fastsdr(original_source, predicted_source, window=88200, hop=66150):
             orig_window = original_source[source_idx, _i * hop : _i * hop + window, :]
             pred_window = predicted_source[source_idx, _i * hop : _i * hop + window, :]
 
-            source_sdr[_i] = _calc_sdr(orig_window, pred_window)
+            source_sdr[_i] = _calc_sdr(orig_window, pred_window, tensor)
         nanmask = nanmask | np.isnan(source_sdr)
         SDR.append(source_sdr)
     SDR = np.stack(SDR, axis=0)
@@ -31,7 +32,10 @@ def fastsdr(original_source, predicted_source, window=88200, hop=66150):
     return SDR
 
 
-def _calc_sdr(orig_win, pred_win):
+def _calc_sdr(orig_win, pred_win, tensor=False):
     if not orig_win.any():
         return np.nan
-    return 10 * np.log10(np.sum(orig_win**2) / np.sum((orig_win - pred_win) ** 2))
+    if tensor:
+        return 10 * float(np.log10(torchsum(orig_win**2) / torchsum((orig_win - pred_win) ** 2)))
+    else:
+        return 10 * np.log10(np.sum(orig_win**2) / np.sum((orig_win - pred_win) ** 2))
